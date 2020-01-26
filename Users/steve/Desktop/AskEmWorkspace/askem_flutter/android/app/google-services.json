@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "690557268367",
+    "firebase_url": "https://askem-flutter.firebaseio.com",
+    "project_id": "askem-flutter",
+    "storage_bucket": "askem-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690557268367:android:d46a87b98b191889375bfa",
+        "android_client_info": {
+          "package_name": "com.example.askem_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690557268367-dmtravk5dvm7gitpjtlrfp9ib5acj4s6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.askem_flutter",
+            "certificate_hash": "a7df9d88d54f4cdbdcb8f8db8ee917e098ef3786"
+          }
+        },
+        {
+          "client_id": "690557268367-cm61r1d4u110vi33rttl0lrkdfumcf0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiekR2kgQ_tbYoYq6o7bn-1okcKORi0gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690557268367-cm61r1d4u110vi33rttl0lrkdfumcf0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
