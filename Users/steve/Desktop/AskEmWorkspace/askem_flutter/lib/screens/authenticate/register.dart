@@ -1,4 +1,5 @@
 import 'package:askem_flutter/services/auth.dart';
+import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -12,6 +13,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //textfield state
   String email = '';
@@ -21,7 +23,7 @@ class _RegisterState extends State<Register> {
   String error = '';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading(): Scaffold(
       backgroundColor: Colors.blue[100],
       appBar: AppBar(
         backgroundColor: Colors.blue[500],
@@ -50,11 +52,11 @@ class _RegisterState extends State<Register> {
               ),
               TextFormField(
                   decoration: InputDecoration(hintText: "First Name"),
-                  /*validator: (val) {
+                  validator: (val) {
                     if (val.isEmpty) {
                       return 'Please enter First Name';
                     }
-                  },*/
+                  },
                   onChanged: (val) {
                     setState(() {
                       firstName = val;
@@ -67,11 +69,11 @@ class _RegisterState extends State<Register> {
               ),
               TextFormField(
                   decoration: InputDecoration(hintText: "Last Name"),
-                  /*validator: (val) {
+                  validator: (val) {
                     if (val.isEmpty) {
                       return 'Please enter Last Name';
                     }
-                  },*/
+                  },
                   onChanged: (val) {
                     setState(() {
                       lastName = val;
@@ -121,13 +123,18 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
+                  setState(() {
+                    loading=true;
+                  });
                   if (_formKey.currentState.validate()) {
-                    dynamic result = await _auth.register(email, password);
+                    dynamic result = await _auth.register(firstName, lastName, email, password);
                     if (result == null) {
                       setState(() {
                         error='Please supply valid Email';
+                        loading = false;
                       });
                     }
+                    
                   }
                 },
               ),

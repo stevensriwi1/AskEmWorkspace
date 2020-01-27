@@ -1,5 +1,6 @@
 import 'package:askem_flutter/models/user.dart';
 import 'package:askem_flutter/screens/authenticate/sign_in.dart';
+import 'package:askem_flutter/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -34,7 +35,7 @@ Stream<User> get user{
     }
   }
   //sign in email & pass
-Future signIn(/*String fistName, String lastName,*/ String email, String password) async{
+Future signIn(String email, String password) async{
     
     try{
       AuthResult result = await _auth.signInWithEmailAndPassword(
@@ -49,13 +50,15 @@ Future signIn(/*String fistName, String lastName,*/ String email, String passwor
     }
   }
   //register with email & password
-  Future register(/*String fistName, String lastName,*/ String email, String password) async{
+  Future register(String firstName, String lastName, String email, String password) async{
     
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password);
         FirebaseUser user = result.user;
+        //create a new document for the user in firestore with the uid of firebase
+        await DatabaseService(uid: user.uid).updateUserData(firstName, lastName);
         return _userFromFirebaseUser(user);
     }catch(e)
     {

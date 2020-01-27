@@ -1,4 +1,5 @@
 import 'package:askem_flutter/services/auth.dart';
+import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -12,6 +13,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //textfield state
   String email = '';
@@ -20,7 +22,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    //if loading is true then display loading, otherwise the real content
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.blue[100],
       appBar: AppBar(
         backgroundColor: Colors.blue[500],
@@ -86,13 +89,18 @@ class _SignInState extends State<SignIn> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
+                  setState(() {
+                    loading= true;
+                  });
                   if (_formKey.currentState.validate()) {
                     dynamic result = await _authService.signIn(email, password);
                     if (result == null) {
                       setState(() {
                         error='Could not sign in with those credentials';
+                        loading = false;
                       });
                     }
+                    
                   }
                 },
               ),
