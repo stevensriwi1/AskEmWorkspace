@@ -1,23 +1,24 @@
 import 'package:askem_flutter/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-  SignIn({this.toggleView});
+  Register({this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
-  final AuthService _authService = AuthService();
+class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
   //textfield state
   String email = '';
   String password = '';
+  String firstName = '';
+  String lastName = '';
   String error = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +26,11 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.blue[500],
         elevation: 0.0,
-        title: Text('Sign in to AskEm'),
+        title: Text('Sign Up with AskEm'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign In'),
             onPressed: () {
               widget.toggleView();
             },
@@ -39,18 +40,52 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
+          //with this wyou can access all the data from just the key
           key: _formKey,
           child: Column(
             children: <Widget>[
+              //firstname
+              SizedBox(
+                height: 10.0,
+              ),
+              TextFormField(
+                  decoration: InputDecoration(hintText: "First Name"),
+                  /*validator: (val) {
+                    if (val.isEmpty) {
+                      return 'Please enter First Name';
+                    }
+                  },*/
+                  onChanged: (val) {
+                    setState(() {
+                      firstName = val;
+                    });
+                  }),
+
+              //lastname
+              SizedBox(
+                height: 10.0,
+              ),
+              TextFormField(
+                  decoration: InputDecoration(hintText: "Last Name"),
+                  /*validator: (val) {
+                    if (val.isEmpty) {
+                      return 'Please enter Last Name';
+                    }
+                  },*/
+                  onChanged: (val) {
+                    setState(() {
+                      lastName = val;
+                    });
+                  }),
               //email
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               TextFormField(
                   decoration: InputDecoration(hintText: "Email"),
                   validator: (val) {
                     if (val.isEmpty) {
-                      return 'Please enter email';
+                      return 'Please enter some email';
                     }
                   },
                   onChanged: (val) {
@@ -60,14 +95,14 @@ class _SignInState extends State<SignIn> {
                   }),
               //password
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(hintText: "Password"),
                 validator: (val) {
-                  if (val.length <6) {
-                    return 'Please enter your password more than 6 characters';
+                  if (val.length < 6) {
+                    return 'Please enter password with more than 6 char long';
                   }
                 },
                 onChanged: (val) {
@@ -82,15 +117,15 @@ class _SignInState extends State<SignIn> {
               RaisedButton(
                 color: Colors.blueGrey[500],
                 child: Text(
-                  'Sign In',
+                  'Sign Up',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    dynamic result = await _authService.signIn(email, password);
+                    dynamic result = await _auth.register(email, password);
                     if (result == null) {
                       setState(() {
-                        error='Could not sign in with those credentials';
+                        error='Please supply valid Email';
                       });
                     }
                   }
