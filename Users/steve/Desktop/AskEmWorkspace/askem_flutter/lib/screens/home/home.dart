@@ -15,8 +15,10 @@ class Home extends StatefulWidget {
 
 class QuizState extends State<Home> {
   final AuthService _auth = AuthService();
+  final DatabaseService _userFirestore = DatabaseService();
   @override
   Widget build(BuildContext context) {
+    _userFirestore.getUserDoc();
     return StreamProvider<QuerySnapshot>.value(
       value: DatabaseService().user,
       child: Scaffold(
@@ -42,6 +44,15 @@ class QuizState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              new MaterialButton(
+                  height: 50.0,
+                  color: Colors.green,
+                  onPressed: null,
+                  child: new Text(
+                    _userFirestore.firestoreUID.toString(),
+                    style: new TextStyle(fontSize: 18.0, color: Colors.white),
+                  )),
+              
               new MaterialButton(
                   height: 50.0,
                   color: Colors.green,

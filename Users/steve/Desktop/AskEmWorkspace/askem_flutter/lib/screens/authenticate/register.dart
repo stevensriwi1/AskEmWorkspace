@@ -127,6 +127,7 @@ class _RegisterState extends State<Register> {
                     loading=true;
                   });
                   if (_formKey.currentState.validate()) {
+                    //call the register method
                     dynamic result = await _auth.register(firstName, lastName, email, password);
                     if (result == null) {
                       setState(() {

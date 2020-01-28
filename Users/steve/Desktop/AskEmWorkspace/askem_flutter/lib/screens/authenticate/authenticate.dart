@@ -15,7 +15,7 @@ class _AuthenticateState extends State<Authenticate> {
   void toggleAuthView()
   {
     setState(() {
-      //show reversed of what it current view is. If it is false, then it will change it to true, and when it is false, it will be true
+      //show reversed of what the current view is. If it is false, then it will change it to true, and when it is false, it will be true
       showSignIn=!showSignIn;
     });
   }

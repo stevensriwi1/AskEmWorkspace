@@ -3,6 +3,7 @@ import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  //toggle view
   final Function toggleView;
   SignIn({this.toggleView});
 
@@ -93,6 +94,7 @@ class _SignInState extends State<SignIn> {
                     loading= true;
                   });
                   if (_formKey.currentState.validate()) {
+                    //call the sign in method
                     dynamic result = await _authService.signIn(email, password);
                     if (result == null) {
                       setState(() {

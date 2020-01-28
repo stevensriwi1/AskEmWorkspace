@@ -18,10 +18,9 @@ class AuthService {
 //calling it user
 //auth change user stream
 //whenever there is a change in authentication, the stream will return firebase user
-Stream<User> get user{
-  return _auth.onAuthStateChanged
-    .map(_userFromFirebaseUser);
-}
+  Stream<User> get user {
+    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+  }
 
   //sign in anon
   Future signInAnon() async {
@@ -34,51 +33,45 @@ Stream<User> get user{
       return null;
     }
   }
+
   //sign in email & pass
-Future signIn(String email, String password) async{
-    
-    try{
+  Future signIn(String email, String password) async {
+    try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password);
-        FirebaseUser user = result.user;
-        return _userFromFirebaseUser(user);
-    }catch(e)
-    {
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
+
   //register with email & password
-  Future register(String firstName, String lastName, String email, String password) async{
-    
-    try{
+  Future register(
+      String firstName, String lastName, String email, String password) async {
+    try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password);
-        FirebaseUser user = result.user;
-        //create a new document for the user in firestore with the uid of firebase
-        await DatabaseService(uid: user.uid).updateUserData(firstName, lastName);
-        return _userFromFirebaseUser(user);
-    }catch(e)
-    {
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      //create a new document for the user in firestore with the uid of firebase
+      await DatabaseService(uid: user.uid).updateUserData(firstName, lastName);
+      return _userFromFirebaseUser(user);
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
+
+  
 
   //sign out
-  Future signOut() async{
-    try{
+  Future signOut() async {
+    try {
       return await _auth.signOut();
-    }
-    catch(e)
-    {
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
-
-
-
 }
