@@ -17,20 +17,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   
-  Future<String> getData() async {
-    //add url to the connecttion between API and flutter app, attach your url
-    http.Response response = await http.get(
-        Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-        headers: {
-          //this key is to authenticate, for now it nothing
-          //"key": "sdcwfwfw"
-          "Accept": "application/json"
-        });
-        //list all the data from the json file in body into "data"
-        List data = json.decode(response.body);
-        //calling first column and the title on it
-        print(data[1]["title"]);
-  }
+  
 
   final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
@@ -128,14 +115,6 @@ class _SignInState extends State<SignIn> {
                           }
                         }
                       },
-                    ),
-                    RaisedButton(
-                      color: Colors.blueGrey[500],
-                      child: Text(
-                        'Get Data',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: getData,
                     ),
                     SizedBox(height: 12.0),
                     Text(
