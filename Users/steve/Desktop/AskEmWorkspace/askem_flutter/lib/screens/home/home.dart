@@ -1,3 +1,5 @@
+import 'package:askem_flutter/models/user.dart';
+import 'package:askem_flutter/screens/authenticate/sign_in.dart';
 import 'package:askem_flutter/screens/home/quiz.dart';
 import 'package:askem_flutter/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class QuizState extends State<Home> {
+  User users = User();
   final AuthService _auth = AuthService();
   final DatabaseService _userFirestore = DatabaseService();
   @override
@@ -34,6 +37,8 @@ class QuizState extends State<Home> {
               onPressed: () async {
                 // once it is logged out it will check the wrapper again whether user is null of still sign in.
                 await _auth.signOut();
+                Navigator.pushReplacement(context,
+                    new MaterialPageRoute(builder: (context) => new SignIn()));
               },
             )
           ],
@@ -49,10 +54,9 @@ class QuizState extends State<Home> {
                   color: Colors.green,
                   onPressed: null,
                   child: new Text(
-                    _userFirestore.firestoreUID.toString(),
+                    users.uid.toString(),
                     style: new TextStyle(fontSize: 18.0, color: Colors.white),
                   )),
-              
               new MaterialButton(
                   height: 50.0,
                   color: Colors.green,
@@ -67,12 +71,11 @@ class QuizState extends State<Home> {
       ),
     );
   }
+
   void startQuiz() {
-  setState(() {
-    Navigator.push(
-        context, new MaterialPageRoute(builder: (context) => new Quiz()));
-  });
+    setState(() {
+      Navigator.push(
+          context, new MaterialPageRoute(builder: (context) => new Quiz()));
+    });
+  }
 }
-}
-
-

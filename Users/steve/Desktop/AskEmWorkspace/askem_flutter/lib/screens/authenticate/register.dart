@@ -1,3 +1,4 @@
+import 'package:askem_flutter/screens/home/home.dart';
 import 'package:askem_flutter/services/auth.dart';
 import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -123,9 +124,9 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  setState(() {
-                    loading=true;
-                  });
+                  // setState(() {
+                  //   loading=true;
+                  // });
                   if (_formKey.currentState.validate()) {
                     //call the register method
                     dynamic result = await _auth.register(firstName, lastName, email, password);
@@ -135,6 +136,12 @@ class _RegisterState extends State<Register> {
                         loading = false;
                       });
                     }
+                    else {
+                            Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Home()));
+                          }
                     
                   }
                 },
