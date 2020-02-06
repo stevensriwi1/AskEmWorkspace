@@ -1,3 +1,4 @@
+import 'package:askem_flutter/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -20,16 +21,10 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
       'lastName':lastName
     });
   }
-Future<DocumentReference> getUserDoc() async {
+Future getUserDoc() async {
     
-
-    FirebaseUser user = await _auth.currentUser();
-    DocumentReference ref = _firestore.collection('users').document(user.uid);
-    //getting the uid
-    ref.collection(user.uid).document('firstName');
-    print(ref.documentID);
-    firestoreUID=ref.documentID;
-    return ref;
+    User users = new User();
+    return users.uid;
   }
   //get user stream
   //getting the snapshot of the firestore database

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:askem_flutter/screens/home/home.dart';
 import 'package:askem_flutter/services/auth.dart';
 import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 
 class SignIn extends StatefulWidget {
   //toggle view
@@ -16,9 +16,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  
-  
-
   final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
@@ -99,9 +96,9 @@ class _SignInState extends State<SignIn> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () async {
-                        setState(() {
-                          loading = true;
-                        });
+                        // setState(() {
+                        //   loading = true;
+                        // });
                         if (_formKey.currentState.validate()) {
                           //call the sign in method
                           dynamic result =
@@ -113,6 +110,13 @@ class _SignInState extends State<SignIn> {
                               loading = false;
                             });
                           }
+                          else {
+                            Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new Home()));
+                          }
+                          
                         }
                       },
                     ),
