@@ -1,16 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:askem_flutter/models/user.dart';
-import 'package:askem_flutter/screens/authenticate/sign_in.dart';
-import 'package:askem_flutter/screens/home/home.dart';
-import 'package:askem_flutter/screens/wrapper.dart';
-import 'package:askem_flutter/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:askem_flutter/screens/authenticate/sign_in.dart';
+// import 'package:askem_flutter/screens/home/home.dart';
+// import 'package:askem_flutter/screens/wrapper.dart';
+// import 'package:askem_flutter/services/database.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  static const baseUrl = "http://10.0.2.2:3000/api";
+  static var baseUrl = Platform.isAndroid? "http://10.0.2.2:3000/api" : "http://localhost:3000/api";
 
 //underscore means this property is private and cant be access by other files
 //instance of firebaseauth

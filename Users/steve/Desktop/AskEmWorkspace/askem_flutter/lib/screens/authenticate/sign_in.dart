@@ -1,10 +1,10 @@
-import 'dart:async';
-import 'dart:convert';
+//import 'dart:async';
+//import 'dart:convert';
 import 'package:askem_flutter/screens/home/home.dart';
 import 'package:askem_flutter/services/auth.dart';
 import 'package:askem_flutter/shared/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
 class SignIn extends StatefulWidget {
   //toggle view

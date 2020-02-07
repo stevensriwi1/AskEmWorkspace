@@ -2,7 +2,7 @@ import 'package:askem_flutter/models/user.dart';
 import 'package:askem_flutter/screens/authenticate/sign_in.dart';
 import 'package:askem_flutter/screens/home/quiz.dart';
 import 'package:askem_flutter/services/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:askem_flutter/services/database.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +22,9 @@ class QuizState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     _userFirestore.getUserDoc();
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().user,
+    //return StreamProvider<QuerySnapshot>.value
+    return StreamProvider.value(
+      value: null,
       child: Scaffold(
         backgroundColor: Colors.blue[100],
         appBar: AppBar(
