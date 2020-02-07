@@ -53,14 +53,6 @@ class QuizState extends State<Home> {
               new MaterialButton(
                   height: 50.0,
                   color: Colors.green,
-                  onPressed: null,
-                  child: new Text(
-                    users.uid.toString(),
-                    style: new TextStyle(fontSize: 18.0, color: Colors.white),
-                  )),
-              new MaterialButton(
-                  height: 50.0,
-                  color: Colors.green,
                   onPressed: startQuiz,
                   child: new Text(
                     "Start the Quiz",

@@ -96,9 +96,9 @@ class _SignInState extends State<SignIn> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () async {
-                        // setState(() {
-                        //   loading = true;
-                        // });
+                        setState(() {
+                          loading = true;
+                        });
                         if (_formKey.currentState.validate()) {
                           //call the sign in method
                           dynamic result =
@@ -111,10 +111,13 @@ class _SignInState extends State<SignIn> {
                             });
                           }
                           else {
-                            Navigator.push(
+                            setState(() {
+                              Navigator.push(
                               context,
                               new MaterialPageRoute(
                                   builder: (context) => new Home()));
+                            });
+                            
                           }
                           
                         }
