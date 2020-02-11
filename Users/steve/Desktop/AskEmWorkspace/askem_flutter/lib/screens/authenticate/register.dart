@@ -124,9 +124,9 @@ class _RegisterState extends State<Register> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  // setState(() {
-                  //   loading=true;
-                  // });
+                   setState(() {
+                     loading=true;
+                   });
                   if (_formKey.currentState.validate()) {
                     //call the register method
                     dynamic result = await _auth.register(firstName, lastName, email, password);
@@ -137,6 +137,7 @@ class _RegisterState extends State<Register> {
                       });
                     }
                     else {
+                      loading = false;
                             Navigator.push(
                               context,
                               new MaterialPageRoute(

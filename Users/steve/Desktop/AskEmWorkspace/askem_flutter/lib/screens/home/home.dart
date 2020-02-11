@@ -50,14 +50,14 @@ class QuizState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              new MaterialButton(
-                  height: 50.0,
-                  color: Colors.green,
-                  onPressed: null,
-                  child: new Text(
-                    users.uid.toString(),
-                    style: new TextStyle(fontSize: 18.0, color: Colors.white),
-                  )),
+              // new MaterialButton(
+              //     height: 50.0,
+              //     color: Colors.green,
+              //     onPressed: null,
+              //     child: new Text(
+              //       users.uid.toString(),
+              //       style: new TextStyle(fontSize: 18.0, color: Colors.white),
+              //     )),
               new MaterialButton(
                   height: 50.0,
                   color: Colors.green,
